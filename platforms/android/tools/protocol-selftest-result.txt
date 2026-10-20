@@ -1,0 +1,20 @@
+Validation run: 2026-10-20
+
+Kotlin reference codec:
+  Command: ./tools/run-protocol-selftest.sh
+  Result: PASS (6 checks)
+
+Shared C++ BLE codec through JNI:
+  Command: ./tools/run-jni-host-selftest.sh
+  Result: PASS (host CMake build + 6 checks)
+
+Checks:
+  PASS CRC-16/CCITT-FALSE standard vector
+  PASS upstream connection.payload/frame golden bytes
+  PASS upstream command.frames20 fragmentation golden bytes
+  PASS fragmented message reassembly and duplicate START handling
+  PASS reassembly timeout rejects late continuation
+  PASS CRC corruption rejected
+
+Android Gradle build / lint / APK / physical BLE connection: NOT RUN in this environment.
+See ../../ANDROID_SOURCE_AUDIT.md for native test results and known environment blockers.

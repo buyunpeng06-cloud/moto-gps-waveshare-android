@@ -59,3 +59,37 @@ jobs:
           persist-credentials: false
       - name: Swift core tests (no signing or device)
         run: swift test --package-path platforms/ios
+
+  android-community-port:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install pinned Android SDK platform and build tools
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      # Transitional bootstrap: the current development environment had no
+      # Gradle distribution from which to generate and verify the wrapper JAR.
+      # Once gradle-wrapper.jar/scripts are checked in, remove this bootstrap
+      # and invoke ./gradlew directly from the clean checkout.
+      - name: Bootstrap Gradle Wrapper for this CI run
+        working-directory: platforms/android
+        run: gradle wrapper --gradle-version 8.13 --distribution-type bin
+      - name: Build Android debug APK
+        working-directory: platforms/android
+        run: ./gradlew --no-daemon :app:assembleDebug
+      - name: Android unit tests
+        working-directory: platforms/android
+        run: ./gradlew --no-daemon :app:testDebugUnitTest
+      - name: Android lint
+        working-directory: platforms/android
+        run: ./gradlew --no-daemon :app:lintDebug

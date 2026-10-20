@@ -1,0 +1,9 @@
+Validation run: 2026-10-20
+Command:
+  cmake -S tests/native -B /tmp/moto-native-tests -G Ninja
+  cmake --build /tmp/moto-native-tests --parallel 4
+  ctest --test-dir /tmp/moto-native-tests --output-on-failure
+Result: PASS, 7/7 tests.
+Tests: nav_core_tests, nav_app_tests, nav_presenter_tests, ble_protocol_tests,
+connection_epoch_gate_tests, motion_heading_fusion_tests, phone_nav_bridge_tests.
+Build used tests/native's no-LVGL UI stub because the uploaded archive's third_party/lvgl submodule is empty.

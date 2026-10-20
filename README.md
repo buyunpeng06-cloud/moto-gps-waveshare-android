@@ -16,7 +16,7 @@
 
 [功能与使用说明书](docs/USER_MANUAL.md) · [真实导航网关配置](docs/GATEWAY_SETUP.md)
 
-**用安卓手机？** [用 AI 开发安卓版本](docs/ANDROID_AI_GUIDE.md)：可复制的开发提示词、蓝牙与导航适配、测试及 GitHub 发布步骤。目前尚无现成的 Android App。
+**用安卓手机？** [用 AI 开发安卓版本](docs/ANDROID_AI_GUIDE.md)：可复制的开发提示词、蓝牙与导航适配、测试及 GitHub 发布步骤。目前在开发实验性 Android 社区移植版，尚未发布可供日常使用的 APK；状态与限制见 [`platforms/android/README.md`](platforms/android/README.md)。
 
 **欢迎一起共创 Glimpse。** 如果你基于这个项目做出了安卓 App，希望你愿意把源码也公开到 GitHub，让其他人能够学习、使用并一起维护。可以先在 [Issues](https://github.com/mx3353672833-debug/moto-gps-waveshare/issues) 聊想做的功能，再通过 Pull Request 贡献代码、修复或文档；请附上构建说明和已测试的机型。我们会保留贡献者署名，相关代码沿用项目现有许可。具体参与方式见 [安卓共创邀请](docs/ANDROID_AI_GUIDE.md#一起开发安卓版本)。
 
@@ -46,6 +46,11 @@ B1 手机配套主板与 V3 外壳目前暂停推进，现阶段集中完善微�
 
 [产品参数](docs/PRODUCT_SPECIFICATIONS.md) · [电路板与外壳](hardware/README.md) ·
 [技术方案 PDF / DOCX](docs/technical-proposal/README.md) · [资料总目录](docs/PROJECT_DOCUMENTATION.md)
+
+
+## Android community port (experimental)
+
+An experimental native Kotlin + Jetpack Compose Android port is being developed under [`platforms/android/`](platforms/android/README.md) for the existing BLE v1 firmware. It is a community port, not an official release. BLE golden-byte checks and the standalone native tests have been run; Android Gradle/APK and physical-device acceptance are still pending. The original project remains under PolyForm Noncommercial 1.0.0; see `LICENSE.md`, `NOTICE`, and `THIRD_PARTY_NOTICES.md`.
 
 ## 电路板、外壳与产品资料
 
